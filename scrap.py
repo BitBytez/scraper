@@ -70,7 +70,7 @@ def writeIntoGSheets(data):
 def sendMail(link):
     mail = Mailer()
     body = "This the required GSheets link : {}".format(link)
-    mail.send_message(messageBody=body)
+    mail.send_gmail(messageBody=body)
 
 
 def main():

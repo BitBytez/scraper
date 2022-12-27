@@ -22,25 +22,7 @@ class Mailer:
             pass
         self.email = config.EMAIL_ID
 
-    def send_mail(self, filename=config.EXCEL_FILE_NAME, to=None, sub="TESTING", body="This is the test body"):
-        if to == None:
-            to = self.email
-        msg = MIMEMultipart()
-
-        msg['From'] = self.email
-        msg['To'] = to
-        msg['Subject'] = sub
-        msg.attach(MIMEText(body, 'plain'))
-        part = MIMEBase('application', 'octet-stream')
-        part.set_payload(open(filename, 'rb').read())
-        encoders.encode_base64(part)
-        part.add_header('Content-Disposition',
-                        'attachment; filename="{}"'.format(filename))
-        msg.attach(part)
-        mail_content = msg.as_string()
-        self.server.sendmail(self.email, self.email, mail_content)
-
-    def send_message(self, attachments: list = None, subject: str = "TESTING", messageBody: str = ""):
+    def send_gmail(self, attachments: list = None, subject: str = "TESTING", messageBody: str = ""):
         SCOPES = ['https://www.googleapis.com/auth/gmail.send']
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
         try:
