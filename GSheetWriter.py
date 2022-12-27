@@ -14,7 +14,8 @@ class GSheetWriter:
         creds = None
         SCOPES = ["https://www.googleapis.com/auth/drive",
                   "https://www.googleapis.com/auth/drive.file",
-                  "https://www.googleapis.com/auth/spreadsheets"]
+                  "https://www.googleapis.com/auth/spreadsheets",
+                  "https://www.googleapis.com/auth/gmail.send"]
         if os.path.exists('token.json'):
             creds = Credentials.from_authorized_user_file('token.json', SCOPES)
         if not creds or not creds.valid:
